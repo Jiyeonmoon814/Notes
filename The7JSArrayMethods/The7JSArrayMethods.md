@@ -7,7 +7,7 @@
 <br>
 
 ```javascript
-const laptopsWithPrice = [
+const laptops = [
   {brand:"Apple", price: 1500},
   {brand:"Samesung", price: 1300}
   ];
@@ -26,4 +26,26 @@ const laptopsWithPrice = [
   {brand:"Apple", price: 1500, priceWithTax:1800},
   {brand:"Samesung", price: 1300, priceWithTax:1560}
   ];
+  ```
+  <br>
+  ### Array.filter()
+  >Just like the .map() method, it will return a new array and leave the original array as it is. 
+  >Also it will allow you to remove items from an array that don't fit a certain condition/criteria.
+  >Each item of the array is checked to see if it fits the criteria, if it passes the test it is returned within the new array! 
+  <br>
+  ```javascript
+  const laptopOrigins = [
+    {brand:"Apple", price: 1500, origin:'USA'},
+    {brand:"Samesung", price: 1300, origin:'South Korea'},
+    {brand:"LG", price: 1200, origin:'South Korea'},
+    {brand:"DELL", price: 1100, origin:'USA'}
+    ];
+  
+  const theCountryOfOrigin = laptopOrigins.filter(laptopObj => laptopObj.origin === "South Korea");
+
+  //The Result would be 
+    [
+    {brand:"Samesung", price: 1300, origin:'South Korea'},
+    {brand:"LG", price: 1200, origin:'South Korea'}
+    ];
   ```
