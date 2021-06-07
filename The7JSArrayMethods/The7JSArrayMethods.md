@@ -26,8 +26,10 @@ const laptops = [
   {brand:"Apple", price: 1500, priceWithTax:1800},
   {brand:"Samesung", price: 1300, priceWithTax:1560}
   ];
-  ```
+```
+
 <br>
+
 ### Array.filter()
 >Just like the .map() method, it will return a new array and leave the original array as it is. 
 >Also it will allow you to remove items from an array that don't fit a certain condition/criteria.
@@ -49,7 +51,9 @@ const theCountryOfOrigin = laptopOrigins.filter(laptopObj => laptopObj.origin ==
   {brand:"LG", price: 1200, origin:'South Korea'}
   ];
 ```
+
 <br>
+
 ### Array.reduce()
 >The .reduce() method takes a callback function as its first parameter and an optional initial value as its second parameter.
 >If an initial value is not supplied the first array value is used. 
