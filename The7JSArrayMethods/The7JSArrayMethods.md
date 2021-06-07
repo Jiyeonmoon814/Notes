@@ -32,14 +32,14 @@ const laptops = [
 
 ### Array.filter()
 >Just like the .map() method, it will return a new array and leave the original array as it is. 
->Also it will allow you to remove items from an array that don't fit a certain condition/criteria.
+>And plus it will allow you to remove items from an array that don't fit a certain condition/criteria.
 >Each item of the array is checked to see if it fits the criteria, if it passes the test it is returned within the new array! 
 <br>
 
 ```javascript
 const laptopOrigins = [
   {brand:"Apple", price: 1500, origin:'USA'},
-  {brand:"Samesung", price: 1300, origin:'South Korea'},
+  {brand:"Samsung", price: 1300, origin:'South Korea'},
   {brand:"LG", price: 1200, origin:'South Korea'},
   {brand:"DELL", price: 1100, origin:'USA'}
  ];
@@ -48,7 +48,7 @@ const theCountryOfOrigin = laptopOrigins.filter(laptopObj => laptopObj.origin ==
 
 //The Result would be 
   [
-  {brand:"Samesung", price: 1300, origin:'South Korea'},
+  {brand:"Samsung", price: 1300, origin:'South Korea'},
   {brand:"LG", price: 1200, origin:'South Korea'}
   ];
 ```
@@ -96,7 +96,7 @@ const flattened = [[0,1],[2,3],[4,5]].reduce((accumulator,currentValue)=>accumul
 ```javascript
 const laptops = [
   {brand:"Apple", price: 1500},
-  {brand:"Samesung", price: 1300}
+  {brand:"Samsung", price: 1300}
   ];
   
 laptops.forEach(laptop => {
@@ -120,7 +120,7 @@ laptops.forEach(laptop => {
 ```javascript
 const laptopOrigins = [
   {brand:"Apple", price: 1500, origin:'USA'},
-  {brand:"Samesung", price: 1300, origin:'South Korea'},
+  {brand:"Samsung", price: 1300, origin:'South Korea'},
   {brand:"LG", price: 1200, origin:'South Korea'},
   {brand:"DELL", price: 1100, origin:'USA'}
  ];
@@ -129,7 +129,7 @@ const laptopFromKorea = laptopOrigins.find(laptop => laptop.origin === "South Ko
 
 //The Result would be only 
   [
-  {brand:"Samesung", price: 1300, origin:'South Korea'}
+  {brand:"Samsung", price: 1300, origin:'South Korea'}
   ];
 ```
 
@@ -145,7 +145,7 @@ const laptopFromKorea = laptopOrigins.find(laptop => laptop.origin === "South Ko
 ```javascript
 const laptopOrigins = [
   {brand:"Apple", price: 1500, origin:'USA'},
-  {brand:"Samesung", price: 1300, origin:'South Korea'},
+  {brand:"Samsung", price: 1300, origin:'South Korea'},
   {brand:"LG", price: 1200, origin:'South Korea'},
   {brand:"DELL", price: 1100, origin:'USA'}
  ];
@@ -169,7 +169,7 @@ const laptopOverThousand = laptopOrigins.every(laptop => laptop.price >= 1000);
 ```javascript
 const laptopOrigins = [
   {brand:"Apple", price: 1500, origin:'USA'},
-  {brand:"Samesung", price: 1300, origin:'South Korea'},
+  {brand:"Samsung", price: 1300, origin:'South Korea'},
   {brand:"LG", price: 1200, origin:'South Korea'},
   {brand:"DELL", price: 1100, origin:'USA'}
  ];
@@ -183,7 +183,7 @@ const laptopFromUK = laptopOrigins.some(laptop => laptop.origin === "UK");
 
 <br>
 
-* source:<https://medium.com/dailyjs/the-7-js-array-methods-you-will-need-in-2021-a9faa83b50e8>
+* source : <https://medium.com/dailyjs/the-7-js-array-methods-you-will-need-in-2021-a9faa83b50e8>
 
 
 
