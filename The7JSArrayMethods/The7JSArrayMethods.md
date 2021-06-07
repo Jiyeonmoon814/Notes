@@ -71,7 +71,9 @@ const totalWithParam = numbers.reduce((accumulator,currentValue)=> accumulator+c
 ```
 
 <br>
+
 >Another way to use .reduce() method, is to flatten an array. 
+
 <br>
 
 ```javascript
@@ -80,7 +82,9 @@ const flattened = [[0,1],[2,3],[4,5]].reduce((accumulator,currentValue)=>accumul
 ```
 
 <br>
+
 >Whenever you want to convert an array down to a single value by manipulating its values, you can use .reduce() method. 
+
 <br>
 
 ### Array.forEach()
@@ -107,8 +111,80 @@ laptops.forEach(laptop => {
 <br>
 
 ### Array.find()
+>Just like the .filter() method, you'll be able to pass a condition which the value of the array must match.
+>The difference between the two, is that .find() will only return the first element that matches the condition you provided. 
+>By using this method, you can get the first item of an array that passes an explicitly defined test. 
 
-###### https://medium.com/dailyjs/the-7-js-array-methods-you-will-need-in-2021-a9faa83b50e8
+<br>
+
+```javascript
+const laptopOrigins = [
+  {brand:"Apple", price: 1500, origin:'USA'},
+  {brand:"Samesung", price: 1300, origin:'South Korea'},
+  {brand:"LG", price: 1200, origin:'South Korea'},
+  {brand:"DELL", price: 1100, origin:'USA'}
+ ];
+  
+const laptopFromKorea = laptopOrigins.find(laptop => laptop.origin === "South Korea");
+
+//The Result would be only 
+  [
+  {brand:"Samesung", price: 1300, origin:'South Korea'}
+  ];
+```
+
+<br>
+
+### Array.every()
+>The .every() method will check if every elements in the array passes the provided condition.
+>If all elements in the array pass the condition, the method will return true and if it's not, it will return false. 
+>So you can confirm that every item of an array passes an explicitly defined condition. 
+
+<br>
+
+```javascript
+const laptopOrigins = [
+  {brand:"Apple", price: 1500, origin:'USA'},
+  {brand:"Samesung", price: 1300, origin:'South Korea'},
+  {brand:"LG", price: 1200, origin:'South Korea'},
+  {brand:"DELL", price: 1100, origin:'USA'}
+ ];
+  
+const laptopOverThousand = laptopOrigins.every(laptop => laptop.price >= 1000);
+
+//The Result would be 'true'
+```
+
+<br>
+
+### Array.some()
+>Instead of returning true if all elements of an array pass the test like .every() method, 
+>.some() method returns true if at least one element passes the test.
+>If it finds a successful array element it stops and returns true. 
+>However, if .some() method reaches the end of the array without success, it returns false. 
+>So Use .some() method, If you need the first item of an array that passes an explicitly defined test. 
+
+<br>
+
+```javascript
+const laptopOrigins = [
+  {brand:"Apple", price: 1500, origin:'USA'},
+  {brand:"Samesung", price: 1300, origin:'South Korea'},
+  {brand:"LG", price: 1200, origin:'South Korea'},
+  {brand:"DELL", price: 1100, origin:'USA'}
+ ];
+  
+const laptopFromUSA = laptopOrigins.some(laptop => laptop.origin === "USA");
+//The Result would be 'true'
+
+const laptopFromUK = laptopOrigins.some(laptop => laptop.origin === "UK");
+//The Result would be 'false'
+```
+
+<br>
+
+* source:<https://medium.com/dailyjs/the-7-js-array-methods-you-will-need-in-2021-a9faa83b50e8>
+
 
 
 
