@@ -27,25 +27,38 @@ const laptops = [
   {brand:"Samesung", price: 1300, priceWithTax:1560}
   ];
   ```
-  <br>
-  ### Array.filter()
-  >Just like the .map() method, it will return a new array and leave the original array as it is. 
-  >Also it will allow you to remove items from an array that don't fit a certain condition/criteria.
-  >Each item of the array is checked to see if it fits the criteria, if it passes the test it is returned within the new array! 
-  <br>
-  ```javascript
-  const laptopOrigins = [
-    {brand:"Apple", price: 1500, origin:'USA'},
-    {brand:"Samesung", price: 1300, origin:'South Korea'},
-    {brand:"LG", price: 1200, origin:'South Korea'},
-    {brand:"DELL", price: 1100, origin:'USA'}
-    ];
+<br>
+### Array.filter()
+>Just like the .map() method, it will return a new array and leave the original array as it is. 
+>Also it will allow you to remove items from an array that don't fit a certain condition/criteria.
+>Each item of the array is checked to see if it fits the criteria, if it passes the test it is returned within the new array! 
+<br>
+```javascript
+const laptopOrigins = [
+  {brand:"Apple", price: 1500, origin:'USA'},
+  {brand:"Samesung", price: 1300, origin:'South Korea'},
+  {brand:"LG", price: 1200, origin:'South Korea'},
+  {brand:"DELL", price: 1100, origin:'USA'}
+ ];
   
-  const theCountryOfOrigin = laptopOrigins.filter(laptopObj => laptopObj.origin === "South Korea");
+const theCountryOfOrigin = laptopOrigins.filter(laptopObj => laptopObj.origin === "South Korea");
 
-  //The Result would be 
-    [
-    {brand:"Samesung", price: 1300, origin:'South Korea'},
-    {brand:"LG", price: 1200, origin:'South Korea'}
-    ];
-  ```
+//The Result would be 
+  [
+  {brand:"Samesung", price: 1300, origin:'South Korea'},
+  {brand:"LG", price: 1200, origin:'South Korea'}
+  ];
+```
+<br>
+### Array.reduce()
+>The .reduce() method takes a callback function as its first parameter and an optional initial value as its second parameter.
+>If an initial value is not supplied the first array value is used. 
+>The callback function provides an accumulator and currentValue parameter used to perform the reduce calculation. 
+```javascript
+const numbers = [10, 26, 12, 64, 44, 23];
+const total = numbers.reduce((accumulator,currentValue)=> accumulator+currentValue, 0);
+const totalWithParam = numbers.reduce((accumulator,currentValue)=> accumulator+currentValue, 33);
+
+//The result of total would be 10 + 12 + 23 + 26 + 44 + 66 >> 179
+//The result of totalWithParam would be 33 + 10 + 12 + 23 + 26 + 44 + 66 >> 212
+```
