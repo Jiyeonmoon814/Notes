@@ -70,3 +70,46 @@ const totalWithParam = numbers.reduce((accumulator,currentValue)=> accumulator+c
 //The result of totalWithParam would be 33 + 10 + 12 + 23 + 26 + 44 + 66 >> 212
 ```
 
+<br>
+>Another way to use .reduce() method, is to flatten an array. 
+<br>
+
+```javascript
+const flattened = [[0,1],[2,3],[4,5]].reduce((accumulator,currentValue)=>accumulator.concat(currentValue),[]);
+//The result would be [0,1,2,3,4,5]
+```
+
+<br>
+>Whenever you want to convert an array down to a single value by manipulating its values, you can use .reduce() method. 
+<br>
+
+### Array.forEach()
+>This method works a lot like a regular for loop. It loops over an array and executes a function on each item.
+>The first parameter of .forEach() is a callback function that includes the current value and index of the loop. 
+>You should use .forEach() method, when you want to simply loop each item of any array without constructing a new array 
+<br>
+
+```javascript
+const laptops = [
+  {brand:"Apple", price: 1500},
+  {brand:"Samesung", price: 1300}
+  ];
+  
+laptops.forEach(laptop => {
+  console.log(`The ${laptop.brand} will cost you ${laptop.price} pounds before taxes`);
+});
+
+//The result would be 
+//"The Apple will cost you 1500 pounds before taxes"
+//"The Samsung will cost you 1300 pounds before taxes"
+```
+
+<br>
+
+### Array.find()
+
+###### https://medium.com/dailyjs/the-7-js-array-methods-you-will-need-in-2021-a9faa83b50e8
+
+
+
+
