@@ -8,7 +8,7 @@
 
 <br>
 
-```Sass
+```SCSS
 $font-stack: Helvetica, sans-serif;
 $main-color: #333;
 
