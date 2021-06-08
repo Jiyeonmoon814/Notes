@@ -50,7 +50,7 @@ $bgcolor : #c1c1c1;
 
 ```SCSS
 // _base.css
-$font-stack:    Helvetica, sans-serif;
+$font-stack: Helvetica, sans-serif;
 $primary-color: #333;
 
 body {
@@ -70,4 +70,45 @@ body {
   color: white;
 }
 ```
+
+<br>
+
+### Mixins 
+>A mixin lets you make groups of CSS declarations that you want to reuse throughout your site. 
+>You can even pass in values to make your mixin more flexible. 
+
+<br>
+
+```SCSS
+@mixin theme($theme:DarkGray){
+  background: $theme;
+  box-shadow: 0 0 1px rgba($theme, .25);
+  color:#fff;
+}
+
+.info {
+  @include theme;
+  }
+ 
+.alert {
+  @include theme($theme:DarkRed);
+}
+```
+
+<br>
+
+>By using the variable $property inside the parentheses so we can pass in a transform of whatever we want.
+>After you create your mixin, you can then use it as a CSS declaration starting with @include followed by the name of the mixin.
+
+<br>
+
+### Interpolation 
+>Interpolation can be used almost anywhere in a Sass stylesheet to embed the result of a SassScript expression into a chunk of CSS. 
+>Just wrap an expression in #{} in any of the following places:
+> >Selectors in style rules
+
+
+
+
+
    
