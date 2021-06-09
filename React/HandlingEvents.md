@@ -20,3 +20,30 @@
   Activate Lasers
 </button>
 ```
+
+>Another difference is that you cannot return false to prevent default behaviour in React. 
+>You must call preventDefault explicitly.
+
+<br>
+
+```jsx
+//in React
+function Form(){
+  function handleSubmit(e){
+    e.preventDefault();
+    console.log('You clicked submit');
+  }
+  
+  return(
+    <form onSubmit={handleSubmit}>
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+
+<br>
+
+>When using React, you generally don't need to call addEventListener to add listeners to a DOM element after it is created.
+>Instead, just provide a listener when the element is initially rendered.
+
