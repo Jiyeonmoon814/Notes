@@ -14,7 +14,7 @@
 
 <br>
 
-```reactJs
+```jsx
 //in React
 <button onClick={activateLasers}>
   Activate Lasers
