@@ -6,7 +6,7 @@
 
 <br>
 
-### :round_pushpin: State Hook
+## :round_pushpin: State Hook
 >useState is a Hook. We call it inside a function component to add some local state to it and useState returns a pair
 > >the current state value <br>
 > >and A function that lets you update it. 
@@ -73,8 +73,8 @@ const example = () => {
   const [count, setCount] = useState(0);
 ```
 
->Inside the example component, we declare a new state variable by calling the useState Hook. <br>
->We're calling our variable count because it holds the number of buttom clicks. We initialize it to zero by passing 0 as the only useState argument. <br>
+>Inside the example component, we declare a new state variable by calling the useState Hook.
+>We're calling our variable count because it holds the number of buttom clicks. We initialize it to zero by passing 0 as the only useState argument.
 >The second returned item is itself a function. It lets us update the count so we'll name it setCount. 
 
 <br>
