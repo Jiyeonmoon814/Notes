@@ -1,7 +1,5 @@
 ### Using State Correctly 
 
-<br>
-
 #### Do not modify state directly
 >The only place where you can assign this.state in the constructor. 
 
