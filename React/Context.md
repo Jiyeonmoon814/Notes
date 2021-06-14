@@ -26,7 +26,7 @@ const App = () => {
     return (
       <ThemeContext.Provider value="dark">
         <Toolbar />
-      </ThemeContext>
+      </ThemeContext.Provider>
     );
   }
 }
