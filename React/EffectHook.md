@@ -72,3 +72,58 @@ const Example = () => {
 ```
 
 >Other effects might not have a cleanup phase, and don't return anything. 
+
+<br>
+
+## 🤔 How to make an AJAX Call 
+
+```jsx 
+function MyComponent() {
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState([]);
+  
+  useEffect(() => {
+    fetch("https://api.example.com/items")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result);
+        },
+        //it's important to handle errors here 
+        //instead of a catch() block so that we don't swallow
+        //exceptions from actual bugs in components. 
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [])
+```
+
+<br>
+
+>If you want to run an effect and clean it up only once (on mount and unmount),
+>you can pass an empty array [] as a second argument. This tells React that your effect
+>doesn't depend on any values from props or state, so it never needs to re-run. 
+>This isn't handled as a special case, it follows directly from how the dependencies array always works. 
+
+```jsx
+if(error) {
+  return <div>Error : {error.message}</div>;
+}else if(!isLoaded) {
+  return <div>Loading...</div>;
+}else (
+  return (
+  <ul>
+    {items.map(item => (
+      <li key={items.id}>
+        {item.name} {item.price}
+      </li>
+     ))}
+  </ul>
+    );
+  }
+}
+```
