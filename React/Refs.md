@@ -86,6 +86,106 @@ const ref = React.createRef();
 
 <br>
 
+<br>
+
+## 🤔 Is there something like instance variables?
+>The <strong>useRef()</Strong> Hook isn't just for DOM refs. The ref object is a generic container
+>whose current property is mutable and can hold any value, similar to an instance property on class.
+>You can write to it from inside useEffect : 
+
+```jsx
+function Timer() {
+  const intervalRef = useRef();
+  
+  useEffect(() => {
+    const id = setInterval(() => {
+      // ...
+    });
+    intervalRef.current = id;
+    return () => {
+      clearInterval(intervalRef.current);
+    };
+  })'
+}
+```
+
+<br>
+
+>If we just wanted to set an interval, we wouldn't need the ref(since id could be local to the effect),
+>but it's useful if we want to clear the interval from an event handler like this 
+
+```jsx
+//...
+function handleCancelClick() {
+  clearInterval(intervalRef.current);
+}
+//...
+```
+
+>Conceptually, you can think of refs as similar to instance variables in a class. 
+>Unless you're doing lazy initialization, avoid setting refs during rendering.
+>Instead, typically you want to modify refs in event handlers and effects. 
+
+<br>
+
+## 🙄 How to get the previous props or state?
+
+```jsx
+function Counter() {
+  const [count, setCount] = useState(0);
+  
+  const prevCountRef = useRef();
+  useEffect(() => {
+    prevCountRef.current = count;
+  });
+  const prevCount = prevCountRef.current;
+  
+  return <h1> Now:{count}, Before: {prevCount} </h1>;
+}
+```
+
+<br>
+
+>This might be a bit convoluted but you can extract it into a custom Hook.
+
+>useRef returns a mutable ref object whose .current property is initialized to the passed argument(initialValue).
+>The returned object will persist for the full lifetime of the component.
+
+```jsx 
+function Counter() {
+  const [count, setCount] = useState(0);
+  //***
+  const prevCount = usePrevious(count);
+  //***
+  return <h1>Now: {count}, Before:{prevCount}</h1>;
+}
+
+//useRef inside useEffect ***
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+```
+
+<br>
+
+>Note how this would work for props, state, or any other calculated value.
+
+```jsx
+function Counter() {
+  const [count, setCount] = useState(0);
+  
+  const calculation = count + 100;
+  const prevCalculation = usePrevious(calculation);
+  //...
+}
+```
+
+<br>
+
 ## Displaying a custom name in DevTools 
 >React.forwardRef accepts a render function. React DevTools uses this function to determine 
 >what to display for the ref forwarding component.
