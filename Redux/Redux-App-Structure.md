@@ -107,8 +107,87 @@ console.log(newState)
 <br>
 
 ## 📍 Reducers and Immutable updates
+> Earlier, we talked about "mutation"(modifying existing object/array values) and 
+> "immutability"(treating values as something that cannot be changed). In Redux,
+> <Strong>our reducers are never allowed to mutate the original / current state values! </Strong>
 
+##### :x: Illegal - by default, this will mutate the state
 
+```jsx
+state.value = 123
+```
+
+##### :o: This is safe, because we made a copy
+
+```jsx
+return {
+  ...state,
+  value : 123
+}
+```
+
+<br>
+
+## 📝 Writing Async logic with Thunks 
+>So far, all the logic in our application has been synchronous. Actions are dispatched,
+>the store runs the reducers and calculates the new state, and the dispatch function finishes.
+>But, the javascript language has many ways to write code that is asynchronous, and our apps normally have async logic
+>for things like fetching data from an API. We need a place to put that async logic in our Redux apps. 
+
+#### A thunk is a specific kind of Redux function that can contain asynchronous logic and it's written using two functions.
+<li> An inside thunk function, which gets dispatch and getState as arguments. </li>
+<li> The outside creator function, which creates and returns the thunk function. </li>
+
+<br>
+
+```jsx
+// features/counter/counterSlice.js
+export const incrementAsync = amount => dispatch => {
+  setTimeout(() => {
+    dispatch(incrementByAmount(amount))
+  }, 1000)
+}
+```
+
+> The function above is called a thunk and allows us to perform async logic.
+> It can be dispatched like a regular action: `dispatch(incrementAsync(10))`.
+> This will call the thunk with the `dispatch` function as the first argument. 
+> Async code can then be executed an other actions can be dispatched. 
+
+<br>
+
+> We can use them the same way we use a typical Redux action creator. 
+
+```jsx
+store.dispatch(incrementAsync(5))
+```
+
+<br>
+
+>However, using thunks requires that the `redux-thunk middleware` be added to the Redux store when it's created.
+>Fortunately, Redux Toolkit's configureStore function already sets that up for us automatically, 
+>so we can go ahead and use thunks here. <br>
+>When you need to make AJAX calls to fetch data from the server, <Strong>you can put that call in a thunk.</Strong>
+
+```jsx
+// features/counter/counterSlice.js
+
+// the outside "thunk creator" function 
+const fetchUserById = userId => {
+  // the inside "thunk function"
+  return async (dispatch, getState) => {
+    try{
+      //make an async call in the thunk
+      const user = await userAPI.fetchById(userId)
+      //dispatch an action when we get the response back
+      dispatch(userLoaded(user))
+    }catch(err){
+      //If something went wrong, handle it here
+      console.log(err)
+    }
+  }
+}
+```
 
 
 
