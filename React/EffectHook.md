@@ -75,6 +75,46 @@ const Example = () => {
 
 <br>
 
+## 💡 Optimizing performance by skipping effects 
+> In some cases, cleaning up or applying the effect after every render might create a performance problem.
+> You can tell React to skip applying an effect if certain values haven't changed between re-renders.
+> To do so, pass an array as an optional second argument to useEffect
+
+<br>
+
+```jsx
+useEffect (() => {
+  document.title = `You clicked ${count} times`
+}, [count]); // Only re-run the effect if count changes 
+```
+
+> In the example above, we pass `[count]` as the second argument. It means If the count is 5,
+> and then our component re-renders with count still equal to 5, React will compare "5" from the previous 
+> render and "5" from the next render. Because all items in the array are the same (5 === 5), 
+> React would skip the effect. That's how React optimizes performance. 
+
+> When we render with count updated to 6, React will compare the items in the "5" array from the previous 
+> render to items in the "6" array from the next render. This time, React will re-apply the effect because 
+> 5!==6. If there are multiple items in the array, React will re-run the effect even if just one of them is different. 
+
+<br>
+
+```jsx
+useEffect(() => {
+  setFilterItems(
+    items.filter((item) => 
+      item.toLowerCase().includes(search.toLowerCase())
+    )
+  )
+}, [search, items])
+```
+
+> You can also set more than one as the second argument like the above example. 
+> React would skip the effect, if nothing has changed from search, items state. 
+
+
+<br>
+
 ## 🤔 How to make an AJAX Call 
 
 ```jsx 
