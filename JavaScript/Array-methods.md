@@ -23,7 +23,7 @@ const array1 = ['a', 'b', 'c']
 const array2 = ['d', 'e', 'f']
 const array3 = array1.concat(array2)
 
-console.log(array3)
+console.log(array3
 //The result would be : ['a', 'b', 'c', 'd', 'e', 'f']
 ```
 
@@ -38,6 +38,138 @@ const reversed = array1.reverse()
 
 console.log(reversed)
 //The result would be : ['grape', 'banana' 'apple']
+```
+
+<br />
+
+## Flat 
+> The `flat(depth)` method creates a new array with all sub-array elements concatenated into it
+> recursively up to the specified depth. The depth level specifying how deep a nested array structure should be flattened
+> and its default to 1. It returns a new array with the sub-array elements concatenated into it. 
+
+```js
+const arr1 = [0, 1, 2, [3, 4]]
+const arr2 = [0, 1, 2, [[[3, 4]]]]
+const arr3 = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]]
+const arr4 = [1, 2, , 4, 5]
+
+console.log(arr1.flat())
+// expected output : [0, 1, 2, 3, 4]
+
+console.log(arr2.flat(2))
+// expected output : [0, 1, 2, [3, 4]]
+
+arr3.flat(Infinity);
+// expected output : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+// *** The flat method removes empty slots in arrays 
+arr4.flat() 
+// expected output : [1, 2, 4, 5]
+```
+
+#### Alternative 1 : reduce and concat 
+
+```js
+const arr = [0, 1, 2, [3, 4]]
+
+// To flat single level array 
+arr.flat()
+
+// is equivalent to
+arr.reduce((acc, val) => acc.concat(val), []) // [1, 2, 3, 4]
+
+// or with decomposition syntax
+const flattened = arr => [].concat(...arr)
+```
+
+#### Alternative 2 : reduce + concat + isArray + recursivity 
+
+```js
+const arr = [1, 2, [3, 4, [5, 6]]]
+
+// to enable deep level flatten use recursion with reduce and concat 
+function flatDeep(arr, d = 1) {
+  return d > 0 ? arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? 
+          flatDeep(val, d - 1) : val), [])
+  }
+  
+  flatDeep(arr, Infinity)
+  // Expected output : [1, 2, 3, 4, 5, 6] 
+```
+
+#### Alternatvie 3 : Use a stack 
+> Non recursive flatten deep using a stack. Note that depth control is hard/inefficient 
+> as we will need to tag EACH value its own depth also possible w/o reversing on shift/unshift,
+> but array OPs on the end tends to be faster 
+
+```js
+function flatten(input) {
+  const stack = [...input]
+  const res = []
+  
+  while(stack.length){
+    // pop value from stack 
+    const next = stack.pop()
+    if(Array.isArray(next)) {
+      // push back array items, won't modify the original input 
+      stack.push(...next)
+    }else{
+      res.push(next)
+    }
+  }
+  
+  // reverse to restore input order 
+  return res.reverse()
+}
+
+const arr = [1, 2, [3, 4, [5, 6]]
+flatten(arr)
+```
+
+<br />
+
+## Shift
+> The `shift()` method removes the first element from an array and returns that removed element.
+> If the array is empty, it will return undefined. This method changes the length of the array.
+
+```js 
+const arr1 = [1, 2, 3]
+
+const firstEl = arr1.shift()
+
+console.log(firstEl) // 1 
+console.log(arr1) // [2, 3]
+```
+
+#### Using shift() method in while loop 
+> The shift() method is often used in condition inside while loop. In the following example every iteration
+> will remove the next element from an array, until it's empty. 
+
+```js 
+var fruits = ['apple', 'orange', 'melon', 'watermelon']
+
+while( typeof (i = fruits.shift()) !== 'undefined') {
+  console.log(i)
+}
+
+// apple, orange, melon, watermelon 
+```
+
+<br />
+
+## Unshift
+> The `unshift()` method adds one or more elements to the beginning of an array and returns the new length of the array. 
+
+```js
+const arr = [1, 2, 3]
+
+arr.unshift(4)
+arr.unshift(5) // expected output is 5 which is the new length of the array 
+
+console.log(arr) // [5, 4, 1, 2, 3] 
+
+arr.unshift(-2, -1) // arr is [-2, -1, 5, 4, 1, 2, 3] 
+arr.unshift([-3, -4]) // arr is [[-3, -4], -2, -1, 5, 4, 1, 2, 3] and new length is 8 
 ```
 
 <br />
