@@ -227,7 +227,7 @@ const arr3 = [4, 6, 7, 9, 12]
 
 const isPrime = num => {
   for(let i=2; num > i; i++) {
-    if(num % 1 === 0) {
+    if(num % i === 0) {
       return false
     }
   }
