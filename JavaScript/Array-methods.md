@@ -23,7 +23,7 @@ const array1 = ['a', 'b', 'c']
 const array2 = ['d', 'e', 'f']
 const array3 = array1.concat(array2)
 
-console.log(array3
+console.log(array3)
 //The result would be : ['a', 'b', 'c', 'd', 'e', 'f']
 ```
 
@@ -170,6 +170,74 @@ console.log(arr) // [5, 4, 1, 2, 3]
 
 arr.unshift(-2, -1) // arr is [-2, -1, 5, 4, 1, 2, 3] 
 arr.unshift([-3, -4]) // arr is [[-3, -4], -2, -1, 5, 4, 1, 2, 3] and new length is 8 
+```
+
+<br />
+
+## indexOf 
+> The `indexOf(searchEl, fromIndex)` method returns the first index at which a given element can be found in the array, 
+> or -1 if it is not present. <br />
+> fromIndex is the index to start the search at. If the index is greather than or equal to the array's length, -1 is returned,
+> which means the array will not be searched. If the provided index value is a negative number, 
+> it is taken as the offset from the end of the array. 💡 Note : If the provided index is negative, the array is still 
+> searched from front to back. If the provided index is 0, then the whole array will be searched. Default : 0 
+
+```js 
+const colours = ['red', 'orange', 'yellow', 'green']
+
+console.log(colours.indexOf('yellow'))
+// expected output : 2 
+
+console.log(colours.indexOf('blue'))
+// expected output : -1 
+
+console.log(colours.indexOf('red',-1))
+// expected output : -1, since it finds element from index -1 which is 'yellow' , so it returns -1 
+
+console.log(colours.indexOf('red',-3))
+// expected output : 0 
+
+```
+
+<br />
+
+## findIndex 
+> The findIndex() method returns the index of the first element in the array that satisfies the provided testing function. 
+> Otherwise, it returns -1, indicating that no element passed the test. 
+
+```js 
+const array = [5, 2, 8, 30, 7]
+
+const isLargerNum = (ele) => ele > 10 
+
+console.log(array.findIndex(isLargerNum))
+// expected output : 3 
+
+// find Index using arrow function 
+const fruits = ['apple', 'oragne', 'banana', 'melon'] 
+
+const index = fruits.findIndex(fruit => fruit === 'orange')
+
+console.log(index) // 1 
+console.log(fruits[index]) // orange 
+
+// find a prime number in an array 
+const arr2 = [4, 6, 8, 9, 12]
+const arr3 = [4, 6, 7, 9, 12]
+
+const isPrime = num => {
+  for(let i=2; num > i; i++) {
+    if(num % 1 === 0) {
+      return false
+    }
+  }
+  
+  return num > 1 
+}
+
+console.log(arr2.findIndex(isPrime)) // -1, not found
+console.log(arr3.findIndex(isPrime)) // 2, arr3[2] is 7 which is a prime number 
+
 ```
 
 <br />
